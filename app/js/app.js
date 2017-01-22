@@ -3,7 +3,7 @@
     var listener = require('../js/listen');
     var mock = require('../js/mock');
     var visible = false;
-    var peer = require('./peer.js')
+    var peer = require('../js/peer.js')
     
 
     var toggleMenu = function () {
@@ -76,11 +76,4 @@
 
 
     })
-<<<<<<< HEAD
 })(window);
-=======
-    //  window.setTimeout(function(){
-    //             location.assign('main.html');
-    //         }, 3000);
-})(window);
->>>>>>> 32b350ee2456bab51b5ece3e0c288324bc1793af
