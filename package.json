@@ -1,0 +1,29 @@
+{
+  "name": "halcyon",
+  "version": "1.0.0",
+  "description": "App for the blind",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron-rebuild; electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/halcyonbrowser/frontend.git"
+  },
+  "author": "Joannier, Kerlin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/halcyonbrowser/frontend/issues"
+  },
+  "homepage": "https://github.com/halcyonbrowser/frontend#readme",
+  "devDependencies": {
+    "electron": "^1.4.15",
+    "electron-rebuild": "^1.5.7",
+    "eslint": "^3.14.0"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.1.1",
+    "simple-peer": "^6.2.1"
+  }
+}
