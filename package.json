@@ -24,6 +24,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "jquery": "^3.1.1",
+    "node-phantom": "^0.2.5",
     "simple-peer": "^6.2.1"
   }
 }

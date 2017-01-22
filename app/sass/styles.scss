@@ -47,11 +47,13 @@ body > div {
    .microphone {
           font-size: 100px;
           color: white;
-          margin-top: 65%;
           margin-left: auto;
           margin-right: auto;
           display: table;
       } 
+      .micro{
+          margin-top: 65%;          
+      }
   .recording {
       h1{
           font-size: 54px;

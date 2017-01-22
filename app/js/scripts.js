@@ -1,6 +1,7 @@
+var $ = require('jquery');
+var phantom = require('node-phantom');
 
-
-var fbScripts = {
+var scripts = {
     login: function (user, pass) {
         var emailElem = document.getElementById("email");
         emailElem.setAttribute("value", config.fbCredentials.user);
@@ -19,6 +20,7 @@ var fbScripts = {
             // .filter(li => li.getAttribute("class").indexOf("jewelItemNew") != -1 ); 
             var infoList = liList.map((li) => li.getElementsByTagName("span"));
             ntfs = infoList.map(span => span.item(1).textContent + " " + span.item(span.item(1).childNodes.length + 2).textContent);
+            return ntfs;
         }, 300);
 
     },
@@ -32,6 +34,7 @@ var fbScripts = {
 
             mgs = liArray.map(li => { var liContent = li.getElementsByClassName("content")[0]; return { from: liContent.childNodes[0].textContent, message: liContent.childNodes[1].textContent, time: liContent.childNodes[2].textContent } });
         }, 300)
+        return mgs;
     }, getFriendsR: function () {
         var aTag = document.getElementsByClassName("jewelButton")[0]; aTag.click();
         var frInfo = [];
@@ -41,6 +44,7 @@ var fbScripts = {
 
             frInfo = requestList.map(li => { var t = li.textContent.split(" "); var buttons = li.getElementsByTagName("button"); var mutual = t[t.length - 3]; if (!Number.isInteger(mutual)) mutual = 0; return { from: t[0] + " " + t[1], accept: buttons[0], declined: buttons[1], mutual } }).filter(({accept}) => accept);
         }, 3000);
+        return frInfo;
     },
     getNewsFeed: function () {
         var content = Array.from(document.getElementsByClassName("userContentWrapper")).filter(elem => {
@@ -48,10 +52,34 @@ var fbScripts = {
             var b = e[0].nextSibling; return b.getElementsByTagName("img").length == 0 && b.getElementsByTagName("video").length == 0
         });
         var _content = content.map(c => { var userc = c.getElementsByClassName("userContent")[0]; var pb = userc.previousSibling.getElementsByTagName("a"); console.log(pb); var sharedFrom = pb[1], sharedTo = pb[2], sharedStamp = pb[pb.length - 1]; return { text: userc.textContent, sharedFrom: sharedFrom && sharedFrom.textContent, sharedTo: sharedTo && sharedTo.textContent, sharedStamp: sharedStamp && sharedStamp.textContent } });
+        return _content;
+    },
+    loadFb: function () {
+        console.log('facebook')
+        console.log(phantom)
+        return phantom.create(function (err, ph) {
+            console.log(ph);
+            return ph.createPage(function (err, page) {
+                console.log(page)
+                return page.open("http://www.google.com", function (err, status) {
+                    console.log("opened site? ", status);
+                    setTimeout(function () {
+                        return page.evaluate(function (s) {
+                            //Get what you want from the page using jQuery. A good way is to populate an object with all the jQuery commands that you need and then return the object. 
+
+                            console.log(s);
+                        }, function (err, result) {
+                            console.log(result);
+                            ph.exit();
+                        });
+                    }, 800);
+                });
+            });
+        });
     }
 
 
 }
 
 
-module.exports = fbScripts
+module.exports = scripts

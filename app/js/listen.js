@@ -50,16 +50,35 @@ var listener = function () {
             leftchannel = [];
             rightchannel = [];
             var form = new FormData();
-            form.append('blob', blob, 'test.wav')
+            let token =  window.localStorage.getItem("token");
+            form.append('command', blob)
+            form.append('token', token)
+            console.log(token)
+            // var xhr = new XMLHttpRequest();
+            // xhr.addEventListener("readystatechange", function () {
+            //   if (this.readyState === 4) {
+            //     console.log(JSON.parse(this.responseText));
+            //   }
+            // });
+            var settings = {
+              async: true,
+              crossDomain: true,
+              url: 'https://4ca55f42.ngrok.io/command_audio',
+              method: 'POST',
+              processData: false,
+              contentType: false,
+              mimeType: 'multipart/form-data',
+              data: form
+            }
+            // $.ajax(settings).done(function(resp){
+            //   console.log(resp)
+            // })
 
-            var xhr = new XMLHttpRequest();
-            xhr.addEventListener("readystatechange", function () {
-              if (this.readyState === 4) {
-                console.log(JSON.parse(this.responseText));
-              }
-            });
-            xhr.open("POST", "http://localhost:5000/");
-            //xhr.send(form);
+
+            
+            // xhr.open("POST", "https://4ca55f42.ngrok.io/command_audio");
+            // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+            // xhr.send(form);
           }
         }
 
@@ -75,7 +94,8 @@ var listener = function () {
     console.log("getUserMedia not supported");
   }
   window.addEventListener('keydown', function (e) { $("#recordingContainer").slideDown() ;recording = true }, true)
-  window.addEventListener('keyup', function (e) {$("#recordingContainer").slideUp(); recording = false; finishRec = true }, true)
+              
+  window.addEventListener('keyup', function (e) { $("#recordingContainer").slideUp(); recording = false; finishRec = true }, true)
 
   function file(leftchannel, rightchannel, recordingLength, sampleRate) {
     // we flat the left and right channels down
