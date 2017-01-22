@@ -90,14 +90,36 @@
         var speak = function () {
             var content = document.getElementById('contentHolder');
             console.log(content);
-            Array.from(content.childNodes).forEach(function (elem, index) {
-                var result = mock.result[index];
-                console.log(result);
-                var entity = result.entity;
-                var text = result.text;
-                var title = text.split(' ');
-                say(title + entity + text);
-            })
+            // mock.result.forEach(function (elem) {
+            //     var entity = elem.entity;
+            //     var text = elem.text;
+            //     var title = text.split(' ');
+            //     window.setTimeout(function(){
+            //         say(title + entity + text);
+            //     }, 10000)
+            //     var i = 0;
+            // })
+
+            var entity = mock.result[0].entity;
+                    var text = mock.result[0].text;
+                    var title = text.split(' ');
+                    var toSpeak = title + entity + text
+                    console.log(toSpeak);
+                    say(toSpeak);
+
+            var i = 1;
+            var id  = setInterval(function(){
+                    if(i > 2) {
+                        clearInterval(id);
+                        return;
+                    }
+                    var entity = mock.result[i].entity;
+                    var text = mock.result[i].text;
+                    var title = text.split(' ');
+                    var toSpeak = title + entity + text
+                    say(toSpeak);
+                    i++;
+                }, 6000)
         }
 
         var talk = function (text) {

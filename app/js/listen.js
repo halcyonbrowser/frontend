@@ -70,12 +70,12 @@ var listener = function () {
               mimeType: 'multipart/form-data',
               data: form
             }
-            // $.ajax(settings).done(function(resp){
-            //   console.log(resp)
-            // })
+            $.ajax(settings).done(function(resp){
+              console.log(resp)
+            })
 
 
-            
+
             // xhr.open("POST", "https://4ca55f42.ngrok.io/command_audio");
             // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
             // xhr.send(form);
