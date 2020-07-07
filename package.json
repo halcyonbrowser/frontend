@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/halcyonbrowser/frontend#readme",
   "devDependencies": {
-    "electron": "^1.4.15",
+    "electron": "^9.1.0",
     "electron-rebuild": "^1.5.7",
     "eslint": "^3.14.0"
   },
